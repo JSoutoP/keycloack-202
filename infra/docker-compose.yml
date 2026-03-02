@@ -6,7 +6,7 @@ services:
     command:
       - start-dev
       - --hostname-strict=false
-      - --proxy=edge
+      - --proxy-headers=xforwarded
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
