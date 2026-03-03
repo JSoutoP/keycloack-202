@@ -1,7 +1,3 @@
-# 📄 01-instalar-keycloak-js.md (REESCRITO)
-
----
-
 # Lab 02 — Integrar Keycloak (Bootstrap Manual)
 
 ## Paso 01 — Instalar keycloak-js

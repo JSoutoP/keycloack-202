@@ -51,13 +51,13 @@ Reemplazar contenido por:
 
 ```typescript
 import { Component, OnInit, inject } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
+import Keycloak from 'keycloak-js';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-protected',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, JsonPipe],
   template: `
     <h2>Protected Area</h2>
 
@@ -67,16 +67,9 @@ import { CommonModule } from '@angular/common';
     </div>
   `
 })
-export class ProtectedComponent implements OnInit {
-
-  private keycloakService = inject(KeycloakService);
-
-  tokenParsed: any;
-
-  ngOnInit(): void {
-    const keycloak = this.keycloakService.getKeycloakInstance();
-    this.tokenParsed = keycloak.tokenParsed;
-  }
+export class Protected {
+  private keycloak = inject(Keycloak);
+  tokenParsed = this.keycloak.tokenParsed;
 }
 ```
 

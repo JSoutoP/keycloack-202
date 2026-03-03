@@ -122,20 +122,21 @@ src/app/auth.guard.ts
 Reemplazar contenido por:
 
 ```typescript
-import { createAuthGuard } from 'keycloak-angular';
+import { inject } from '@angular/core';
+import { CanActivateFn } from '@angular/router';
+import Keycloak from 'keycloak-js';
 
-export const authGuard = createAuthGuard({
-  isAccessAllowed: async (route, state, keycloak) => {
+export const authGuard: CanActivateFn = async (route, state) => {
+  const keycloak = inject(Keycloak);
 
-    if (!keycloak.authenticated) {
-      await keycloak.login({
-        redirectUri: window.location.origin + state.url
-      });
-    }
-
-    return keycloak.authenticated;
+  if (!keycloak.authenticated) {
+    await keycloak.login({
+      redirectUri: window.location.origin + state.url
+    });
   }
-});
+
+  return true;
+};
 ```
 
 ---
